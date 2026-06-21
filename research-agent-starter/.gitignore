@@ -1,0 +1,12 @@
+# Never let your secret key reach GitHub
+.env
+
+# Local agent state
+memory.json
+chroma_db/
+
+# Python clutter
+__pycache__/
+*.pyc
+.venv/
+venv/

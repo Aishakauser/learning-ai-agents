@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agents — One-Page Concept Map</title>
+<style>
+  :root{
+    --bg:#0f1117; --panel:#171a23; --ink:#e8eaf0;
+    --muted:#9aa3b2; --line:#2b303d;
+    --c1:#6ea8fe; --c2:#7ee0c2; --c3:#f6c177; --c4:#e58fb1; --c5:#b39ddb;
+    --core:#ffd479;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.4;padding:28px}
+  h1{font-size:24px;margin:0 0 2px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:22px}
+  .wrap{max-width:1100px;margin:0 auto}
+
+  .layer{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:14px 16px;margin:0 0 12px;position:relative}
+  .layer h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+    margin:0 0 10px;color:var(--muted)}
+  .badge{display:inline-block;font-size:11px;font-weight:700;color:#0f1117;
+    border-radius:6px;padding:2px 8px;margin-right:8px}
+  .row{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:#1f2430;border:1px solid var(--line);border-radius:10px;
+    padding:8px 11px;font-size:13px;min-width:0}
+  .chip b{display:block;font-size:13px}
+  .chip span{color:var(--muted);font-size:11.5px}
+
+  .arrow{text-align:center;color:var(--muted);font-size:20px;margin:-4px 0 6px;line-height:1}
+
+  .l1{border-left:4px solid var(--c1)} .b1{background:var(--c1)}
+  .l2{border-left:4px solid var(--c2)} .b2{background:var(--c2)}
+  .l3{border-left:4px solid var(--c3)} .b3{background:var(--c3)}
+  .l4{border-left:4px solid var(--c4)} .b4{background:var(--c4)}
+  .l5{border-left:4px solid var(--c5)} .b5{background:var(--c5)}
+
+  .core{background:linear-gradient(180deg,#1c2030,#171a23);
+    border:1px solid var(--core);border-radius:14px;padding:16px;margin:14px 0}
+  .core h2{color:var(--core)}
+  .eq{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px}
+  .eq .t{background:#0f1117;border:1px solid var(--line);border-radius:9px;padding:7px 10px}
+  .eq .plus{color:var(--core);font-weight:800}
+
+  .loop{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-size:13px}
+  .loop .step{background:#0f1117;border:1px solid var(--line);border-radius:9px;padding:7px 11px}
+  .loop .to{color:var(--core);font-weight:800}
+
+  .foot{color:var(--muted);font-size:12px;margin-top:18px;text-align:center}
+  @media print{ body{background:#fff;color:#000;padding:0} .layer,.chip,.core,.eq .t,.loop .step{background:#fff;border-color:#bbb;color:#000} .sub,.muted,.chip span,.layer h2{color:#444} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>How AI Agent Concepts Connect</h1>
+  <div class="sub">Read top to bottom — each layer is built on the one above it. The golden box in the middle is the whole idea in one line. Companion to <i>Building AI Agents — A Complete Guide</i>.</div>
+
+  <!-- LAYER 1 -->
+  <div class="layer l1">
+    <h2><span class="badge b1">1</span>The Workshop — developer toolkit</h2>
+    <div class="row">
+      <div class="chip"><b>VS Code</b><span>where you write code</span></div>
+      <div class="chip"><b>Terminal</b><span>control by typing commands</span></div>
+      <div class="chip"><b>Git</b><span>save snapshots (commits)</span></div>
+      <div class="chip"><b>GitHub</b><span>code in the cloud</span></div>
+      <div class="chip"><b>Virtual env + pip</b><span>isolated package bubble</span></div>
+      <div class="chip"><b>API key (.env)</b><span>secret — never share</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- LAYER 2 -->
+  <div class="layer l2">
+    <h2><span class="badge b2">2</span>The Materials — tech stack</h2>
+    <div class="row">
+      <div class="chip"><b>Front-end</b><span>what users see</span></div>
+      <div class="chip"><b>Back-end</b><span>the logic — agents live here</span></div>
+      <div class="chip"><b>Database</b><span>stored information</span></div>
+      <div class="chip"><b>Vector DB</b><span>stores meaning → enables RAG</span></div>
+      <div class="chip"><b>Python</b><span>the AI language</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- LAYER 3 -->
+  <div class="layer l3">
+    <h2><span class="badge b3">3</span>The Engine — the LLM (the "brain")</h2>
+    <div class="row">
+      <div class="chip"><b>Neural network</b><span>learns patterns from examples</span></div>
+      <div class="chip"><b>LLM</b><span>predicts the next chunk of text</span></div>
+      <div class="chip"><b>Tokens</b><span>text chunks — you pay per token</span></div>
+      <div class="chip"><b>Context window</b><span>the model's "desk" (memory limit)</span></div>
+      <div class="chip"><b>Embeddings</b><span>meaning as numbers → search</span></div>
+      <div class="chip"><b>System prompt</b><span>sets role & rules</span></div>
+    </div>
+    <div class="row" style="margin-top:8px">
+      <div class="chip" style="border-color:#5a4a3a"><b>⚠ Limits to design around</b><span>hallucination · knowledge cutoff · statelessness · no actions · weak math</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼ &nbsp;the limits above are exactly why the next layers exist</div>
+
+  <!-- CORE -->
+  <div class="core">
+    <h2>★ The whole idea in one line</h2>
+    <div class="eq">
+      <span class="t">An <b>agent</b></span><span class="plus">=</span>
+      <span class="t">an <b>LLM</b></span><span class="plus">+</span>
+      <span class="t">a <b>loop</b></span><span class="plus">+</span>
+      <span class="t"><b>tools</b> (hands)</span><span class="plus">+</span>
+      <span class="t"><b>memory</b></span><span class="plus">+</span>
+      <span class="t"><b>guardrails</b></span>
+    </div>
+    <div class="loop">
+      <span class="step">🎯 Goal</span><span class="to">→</span>
+      <span class="step">🧠 THINK</span><span class="to">→</span>
+      <span class="step">🛠 ACT (call a tool)</span><span class="to">→</span>
+      <span class="step">👀 OBSERVE result</span><span class="to">↺ repeat</span>
+      <span class="to">→</span><span class="step">✅ Answer</span>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- LAYER 4 -->
+  <div class="layer l4">
+    <h2><span class="badge b4">4</span>Making it capable, then intelligent</h2>
+    <div class="row">
+      <div class="chip"><b>Tools / function calling</b><span>gives the LLM hands</span></div>
+      <div class="chip"><b>Memory</b><span>short-term chat + long-term facts</span></div>
+      <div class="chip"><b>RAG</b><span>answer from your own documents</span></div>
+      <div class="chip"><b>Planning</b><span>break goal into steps</span></div>
+      <div class="chip"><b>ReAct / reflection</b><span>reason, then self-correct</span></div>
+      <div class="chip"><b>Guardrails + evals</b><span>safe & measured</span></div>
+      <div class="chip"><b>Context engineering</b><span>curate the "desk" — core skill</span></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- LAYER 5 -->
+  <div class="layer l5">
+    <h2><span class="badge b5">5</span>Scaling up — frameworks &amp; multi-agent</h2>
+    <div class="row">
+      <div class="chip"><b>No framework</b><span>plain Claude API + your loop (start here)</span></div>
+      <div class="chip"><b>LangChain</b><span>component toolbox</span></div>
+      <div class="chip"><b>LangGraph</b><span>agents as controllable flowcharts</span></div>
+      <div class="chip"><b>Claude Agent SDK</b><span>Anthropic's production toolkit</span></div>
+      <div class="chip"><b>MCP</b><span>"USB-C" for plugging in tools</span></div>
+    </div>
+    <div class="row" style="margin-top:8px">
+      <div class="chip"><b>Multi-agent</b><span>orchestrator + specialists, each its own context</span></div>
+      <div class="chip" style="border-color:#5a4a6a"><b>Deep Agents</b><span>long tasks = planning + file memory + sub-agents + skills</span></div>
+    </div>
+  </div>
+
+  <div class="foot">Rule of thumb: use the simplest thing that works. A workflow before an agent; one agent before many; many only when one truly can't cope.</div>
+</div>
+</body>
+</html>

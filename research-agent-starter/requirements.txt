@@ -1,0 +1,8 @@
+# Core — needed for all three levels
+anthropic>=0.40.0
+python-dotenv>=1.0.0
+
+# Level 3 (RAG) only — a local vector database with built-in embeddings.
+# This is the heaviest dependency; the first run downloads a small (~80MB)
+# embedding model. You can skip it if you only run Level 1 and Level 2.
+chromadb>=0.5.0
