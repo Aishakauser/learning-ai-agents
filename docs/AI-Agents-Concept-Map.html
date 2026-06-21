@@ -3,72 +3,84 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Agents — One-Page Concept Map</title>
+<title>AI Agents — Interactive Concept Map</title>
 <style>
   :root{
-    --bg:#0f1117; --panel:#171a23; --ink:#e8eaf0;
-    --muted:#9aa3b2; --line:#2b303d;
-    --c1:#6ea8fe; --c2:#7ee0c2; --c3:#f6c177; --c4:#e58fb1; --c5:#b39ddb;
-    --core:#ffd479;
+    --bg:#0f1117; --panel:#171a23; --ink:#e8eaf0; --muted:#9aa3b2; --line:#2b303d;
+    --c1:#6ea8fe; --c2:#7ee0c2; --c3:#f6c177; --c4:#e58fb1; --c5:#b39ddb; --core:#ffd479;
   }
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{margin:0;background:var(--bg);color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.4;padding:28px}
-  h1{font-size:24px;margin:0 0 2px}
-  .sub{color:var(--muted);font-size:13px;margin-bottom:22px}
-  .wrap{max-width:1100px;margin:0 auto}
+    line-height:1.5;padding:28px}
+  .wrap{max-width:1000px;margin:0 auto}
+  h1{font-size:25px;margin:0 0 2px}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:8px}
+  .hint{background:#1f2430;border:1px solid var(--line);border-radius:10px;
+    padding:10px 14px;font-size:13.5px;color:var(--muted);margin:14px 0 22px}
+  .hint b{color:var(--ink)}
 
   .layer{background:var(--panel);border:1px solid var(--line);border-radius:14px;
-    padding:14px 16px;margin:0 0 12px;position:relative}
-  .layer h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+    padding:14px 16px;margin:0 0 12px}
+  .layer h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;
     margin:0 0 10px;color:var(--muted)}
   .badge{display:inline-block;font-size:11px;font-weight:700;color:#0f1117;
     border-radius:6px;padding:2px 8px;margin-right:8px}
   .row{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{background:#1f2430;border:1px solid var(--line);border-radius:10px;
-    padding:8px 11px;font-size:13px;min-width:0}
-  .chip b{display:block;font-size:13px}
-  .chip span{color:var(--muted);font-size:11.5px}
+  /* concept chips are links */
+  a.chip{display:inline-block;background:#1f2430;border:1px solid var(--line);
+    border-radius:10px;padding:8px 12px;font-size:13.5px;color:var(--ink);
+    text-decoration:none;cursor:pointer;transition:transform .08s,border-color .12s,background .12s}
+  a.chip:hover{transform:translateY(-1px);background:#262c3a;border-color:#3a4252}
+  a.chip::after{content:" ›";color:var(--muted)}
 
-  .arrow{text-align:center;color:var(--muted);font-size:20px;margin:-4px 0 6px;line-height:1}
+  .arrow{text-align:center;color:var(--muted);font-size:18px;margin:-3px 0 6px}
 
   .l1{border-left:4px solid var(--c1)} .b1{background:var(--c1)}
   .l2{border-left:4px solid var(--c2)} .b2{background:var(--c2)}
   .l3{border-left:4px solid var(--c3)} .b3{background:var(--c3)}
   .l4{border-left:4px solid var(--c4)} .b4{background:var(--c4)}
   .l5{border-left:4px solid var(--c5)} .b5{background:var(--c5)}
-
-  .core{background:linear-gradient(180deg,#1c2030,#171a23);
-    border:1px solid var(--core);border-radius:14px;padding:16px;margin:14px 0}
+  .core{background:linear-gradient(180deg,#1c2030,#171a23);border:1px solid var(--core);
+    border-radius:14px;padding:14px 16px;margin:14px 0}
   .core h2{color:var(--core)}
-  .eq{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px}
-  .eq .t{background:#0f1117;border:1px solid var(--line);border-radius:9px;padding:7px 10px}
-  .eq .plus{color:var(--core);font-weight:800}
 
-  .loop{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-size:13px}
-  .loop .step{background:#0f1117;border:1px solid var(--line);border-radius:9px;padding:7px 11px}
-  .loop .to{color:var(--core);font-weight:800}
-
-  .foot{color:var(--muted);font-size:12px;margin-top:18px;text-align:center}
-  @media print{ body{background:#fff;color:#000;padding:0} .layer,.chip,.core,.eq .t,.loop .step{background:#fff;border-color:#bbb;color:#000} .sub,.muted,.chip span,.layer h2{color:#444} }
+  /* definitions */
+  .defs{margin-top:40px}
+  .defs h2.section{font-size:18px;border-top:1px solid var(--line);padding-top:24px}
+  .def{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;margin:0 0 12px;scroll-margin-top:20px}
+  .def h3{margin:0 0 6px;font-size:16px}
+  .def .tag{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;
+    letter-spacing:.04em}
+  .def p{margin:8px 0 0;font-size:14.5px;color:#d7dbe6}
+  .def .top{display:inline-block;margin-top:10px;font-size:12.5px;color:var(--c1);
+    text-decoration:none}
+  .def .top:hover{text-decoration:underline}
+  /* glow the concept you jumped to */
+  .def:target{border-color:var(--core);box-shadow:0 0 0 2px rgba(255,212,121,.25)}
+  .def:target h3{color:var(--core)}
+  footer{color:var(--muted);font-size:12px;margin-top:30px;text-align:center}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>How AI Agent Concepts Connect</h1>
-  <div class="sub">Read top to bottom — each layer is built on the one above it. The golden box in the middle is the whole idea in one line. Companion to <i>Building AI Agents — A Complete Guide</i>.</div>
+  <h1 id="map">AI Agents — Interactive Concept Map</h1>
+  <div class="sub">Every concept needed to build an agent, in plain language.</div>
+  <div class="hint">👆 <b>Click any concept</b> below to jump to its plain-language definition. Each definition has a <b>“↑ back to map”</b> link to return here.</div>
 
   <!-- LAYER 1 -->
   <div class="layer l1">
     <h2><span class="badge b1">1</span>The Workshop — developer toolkit</h2>
     <div class="row">
-      <div class="chip"><b>VS Code</b><span>where you write code</span></div>
-      <div class="chip"><b>Terminal</b><span>control by typing commands</span></div>
-      <div class="chip"><b>Git</b><span>save snapshots (commits)</span></div>
-      <div class="chip"><b>GitHub</b><span>code in the cloud</span></div>
-      <div class="chip"><b>Virtual env + pip</b><span>isolated package bubble</span></div>
-      <div class="chip"><b>API key (.env)</b><span>secret — never share</span></div>
+      <a class="chip" href="#vs-code">VS Code</a>
+      <a class="chip" href="#terminal">Terminal</a>
+      <a class="chip" href="#git">Git</a>
+      <a class="chip" href="#github">GitHub</a>
+      <a class="chip" href="#gh">GitHub CLI (gh)</a>
+      <a class="chip" href="#venv">Virtual environment</a>
+      <a class="chip" href="#api-key">API key</a>
     </div>
   </div>
   <div class="arrow">▼</div>
@@ -77,64 +89,54 @@
   <div class="layer l2">
     <h2><span class="badge b2">2</span>The Materials — tech stack</h2>
     <div class="row">
-      <div class="chip"><b>Front-end</b><span>what users see</span></div>
-      <div class="chip"><b>Back-end</b><span>the logic — agents live here</span></div>
-      <div class="chip"><b>Database</b><span>stored information</span></div>
-      <div class="chip"><b>Vector DB</b><span>stores meaning → enables RAG</span></div>
-      <div class="chip"><b>Python</b><span>the AI language</span></div>
+      <a class="chip" href="#frontend">Front-end</a>
+      <a class="chip" href="#backend">Back-end</a>
+      <a class="chip" href="#database">Database</a>
+      <a class="chip" href="#vector-db">Vector database</a>
+      <a class="chip" href="#python">Python</a>
     </div>
   </div>
   <div class="arrow">▼</div>
 
   <!-- LAYER 3 -->
   <div class="layer l3">
-    <h2><span class="badge b3">3</span>The Engine — the LLM (the "brain")</h2>
+    <h2><span class="badge b3">3</span>The Engine — the LLM</h2>
     <div class="row">
-      <div class="chip"><b>Neural network</b><span>learns patterns from examples</span></div>
-      <div class="chip"><b>LLM</b><span>predicts the next chunk of text</span></div>
-      <div class="chip"><b>Tokens</b><span>text chunks — you pay per token</span></div>
-      <div class="chip"><b>Context window</b><span>the model's "desk" (memory limit)</span></div>
-      <div class="chip"><b>Embeddings</b><span>meaning as numbers → search</span></div>
-      <div class="chip"><b>System prompt</b><span>sets role & rules</span></div>
-    </div>
-    <div class="row" style="margin-top:8px">
-      <div class="chip" style="border-color:#5a4a3a"><b>⚠ Limits to design around</b><span>hallucination · knowledge cutoff · statelessness · no actions · weak math</span></div>
+      <a class="chip" href="#neural-network">Neural network</a>
+      <a class="chip" href="#llm">LLM</a>
+      <a class="chip" href="#token">Token</a>
+      <a class="chip" href="#context-window">Context window</a>
+      <a class="chip" href="#embedding">Embedding</a>
+      <a class="chip" href="#system-prompt">System prompt</a>
+      <a class="chip" href="#hallucination">Hallucination</a>
     </div>
   </div>
-  <div class="arrow">▼ &nbsp;the limits above are exactly why the next layers exist</div>
+  <div class="arrow">▼</div>
 
   <!-- CORE -->
   <div class="core">
-    <h2>★ The whole idea in one line</h2>
-    <div class="eq">
-      <span class="t">An <b>agent</b></span><span class="plus">=</span>
-      <span class="t">an <b>LLM</b></span><span class="plus">+</span>
-      <span class="t">a <b>loop</b></span><span class="plus">+</span>
-      <span class="t"><b>tools</b> (hands)</span><span class="plus">+</span>
-      <span class="t"><b>memory</b></span><span class="plus">+</span>
-      <span class="t"><b>guardrails</b></span>
-    </div>
-    <div class="loop">
-      <span class="step">🎯 Goal</span><span class="to">→</span>
-      <span class="step">🧠 THINK</span><span class="to">→</span>
-      <span class="step">🛠 ACT (call a tool)</span><span class="to">→</span>
-      <span class="step">👀 OBSERVE result</span><span class="to">↺ repeat</span>
-      <span class="to">→</span><span class="step">✅ Answer</span>
+    <h2>★ The core idea</h2>
+    <div class="sub" style="margin-bottom:10px">An <b>agent</b> = an LLM + a loop + tools + memory + guardrails. Click each piece:</div>
+    <div class="row">
+      <a class="chip" href="#agent">Agent</a>
+      <a class="chip" href="#agent-loop">Agent loop</a>
+      <a class="chip" href="#tools">Tools / function calling</a>
+      <a class="chip" href="#memory">Memory</a>
+      <a class="chip" href="#guardrails">Guardrails</a>
     </div>
   </div>
   <div class="arrow">▼</div>
 
   <!-- LAYER 4 -->
   <div class="layer l4">
-    <h2><span class="badge b4">4</span>Making it capable, then intelligent</h2>
+    <h2><span class="badge b4">4</span>Capable, then intelligent</h2>
     <div class="row">
-      <div class="chip"><b>Tools / function calling</b><span>gives the LLM hands</span></div>
-      <div class="chip"><b>Memory</b><span>short-term chat + long-term facts</span></div>
-      <div class="chip"><b>RAG</b><span>answer from your own documents</span></div>
-      <div class="chip"><b>Planning</b><span>break goal into steps</span></div>
-      <div class="chip"><b>ReAct / reflection</b><span>reason, then self-correct</span></div>
-      <div class="chip"><b>Guardrails + evals</b><span>safe & measured</span></div>
-      <div class="chip"><b>Context engineering</b><span>curate the "desk" — core skill</span></div>
+      <a class="chip" href="#rag">RAG</a>
+      <a class="chip" href="#planning">Planning</a>
+      <a class="chip" href="#react">ReAct</a>
+      <a class="chip" href="#reflection">Reflection</a>
+      <a class="chip" href="#evals">Evals</a>
+      <a class="chip" href="#context-engineering">Context engineering</a>
     </div>
   </div>
   <div class="arrow">▼</div>
@@ -143,19 +145,67 @@
   <div class="layer l5">
     <h2><span class="badge b5">5</span>Scaling up — frameworks &amp; multi-agent</h2>
     <div class="row">
-      <div class="chip"><b>No framework</b><span>plain Claude API + your loop (start here)</span></div>
-      <div class="chip"><b>LangChain</b><span>component toolbox</span></div>
-      <div class="chip"><b>LangGraph</b><span>agents as controllable flowcharts</span></div>
-      <div class="chip"><b>Claude Agent SDK</b><span>Anthropic's production toolkit</span></div>
-      <div class="chip"><b>MCP</b><span>"USB-C" for plugging in tools</span></div>
-    </div>
-    <div class="row" style="margin-top:8px">
-      <div class="chip"><b>Multi-agent</b><span>orchestrator + specialists, each its own context</span></div>
-      <div class="chip" style="border-color:#5a4a6a"><b>Deep Agents</b><span>long tasks = planning + file memory + sub-agents + skills</span></div>
+      <a class="chip" href="#framework">Framework</a>
+      <a class="chip" href="#langchain">LangChain</a>
+      <a class="chip" href="#langgraph">LangGraph</a>
+      <a class="chip" href="#claude-agent-sdk">Claude Agent SDK</a>
+      <a class="chip" href="#mcp">MCP</a>
+      <a class="chip" href="#multi-agent">Multi-agent system</a>
+      <a class="chip" href="#deep-agent">Deep Agent</a>
+      <a class="chip" href="#hermes">Hermes Agent</a>
     </div>
   </div>
 
-  <div class="foot">Rule of thumb: use the simplest thing that works. A workflow before an agent; one agent before many; many only when one truly can't cope.</div>
+  <!-- ============ DEFINITIONS ============ -->
+  <div class="defs">
+    <h2 class="section">Definitions</h2>
+
+    <div class="def" id="vs-code"><span class="tag">Toolkit</span><h3>VS Code</h3><p>A free code editor (like Word, but for code) that colors your code, autocompletes, and flags errors. Add-ons called extensions teach it new tricks. It has a built-in terminal too.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="terminal"><span class="tag">Toolkit</span><h3>Terminal (command line)</h3><p>A text-based way to control your computer by typing commands instead of clicking. Faster and more precise for developer tasks; most programming tools expect it.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="git"><span class="tag">Toolkit</span><h3>Git</h3><p>A tool that takes snapshots (called commits) of your project over time, so you can see what changed and rewind if you break something. Like unlimited save slots in a video game.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="github"><span class="tag">Toolkit</span><h3>GitHub</h3><p>A website that stores a copy of your git project in the cloud so you can share it and collaborate. Git is the camera; GitHub is the shared photo album.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="gh"><span class="tag">Toolkit</span><h3>GitHub CLI (gh)</h3><p>GitHub's command-line tool. <code>gh auth login</code> signs you in through the browser; then one command can create a repo and upload your code — no manual tokens.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="venv"><span class="tag">Toolkit</span><h3>Virtual environment</h3><p>An isolated bubble of installed packages for one project, so different projects' dependencies don't collide. Each job carries its own toolbox.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="api-key"><span class="tag">Toolkit</span><h3>API key</h3><p>A secret password that proves you're allowed to use a paid service (like Claude's models). Kept in a hidden <code>.env</code> file and never shared publicly.</p><a class="top" href="#map">↑ back to map</a></div>
+
+    <div class="def" id="frontend"><span class="tag">Tech stack</span><h3>Front-end</h3><p>Everything the user sees and touches — buttons, screens, forms. The dining room of the restaurant.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="backend"><span class="tag">Tech stack</span><h3>Back-end</h3><p>The hidden logic that processes requests and enforces rules. The kitchen where orders are cooked. <b>Agents live here.</b></p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="database"><span class="tag">Tech stack</span><h3>Database</h3><p>Where information is stored permanently — users, messages, orders. The pantry and fridge.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="vector-db"><span class="tag">Tech stack</span><h3>Vector database</h3><p>A special database that stores the <i>meaning</i> of text as lists of numbers, so you can search by similarity of meaning rather than exact words. The backbone of RAG.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="python"><span class="tag">Tech stack</span><h3>Python</h3><p>A readable programming language that dominates AI because nearly every AI tool is built for it first. The default language for agents.</p><a class="top" href="#map">↑ back to map</a></div>
+
+    <div class="def" id="neural-network"><span class="tag">The LLM</span><h3>Neural network</h3><p>A pattern-learning program loosely inspired by brain cells. You don't program rules; you show it millions of examples and it learns the patterns by adjusting internal numbers (weights).</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="llm"><span class="tag">The LLM</span><h3>LLM (Large Language Model)</h3><p>A huge neural network trained on text that predicts the next chunk of text, over and over. Like phone autocomplete scaled up a billionfold. The "brain" of an agent.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="token"><span class="tag">The LLM</span><h3>Token</h3><p>A chunk of text the model reads — often a word or part of a word (≈ ¾ of a word). You pay per token, in and out.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="context-window"><span class="tag">The LLM</span><h3>Context window</h3><p>The maximum amount of text (in tokens) the model can consider at once — its "desk." Instructions, history, documents, and your question all must fit on it.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="embedding"><span class="tag">The LLM</span><h3>Embedding</h3><p>A list of numbers representing the <i>meaning</i> of a piece of text. Similar meanings get similar numbers — which is how "search by meaning" (and RAG) works.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="system-prompt"><span class="tag">The LLM</span><h3>System prompt</h3><p>A special instruction that sets the model's role and rules for the whole conversation ("You are a careful research assistant…"). Your most powerful lever.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="hallucination"><span class="tag">The LLM</span><h3>Hallucination</h3><p>When the model states something false with confidence, because it predicts plausible text rather than checking facts. Fixed by giving it real sources (RAG) and tools.</p><a class="top" href="#map">↑ back to map</a></div>
+
+    <div class="def" id="agent"><span class="tag">Core</span><h3>Agent</h3><p>An LLM given a goal that decides for itself what steps to take and which tools to use, looping until done. Formula: <b>LLM + loop + tools + memory + guardrails.</b></p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="agent-loop"><span class="tag">Core</span><h3>Agent loop</h3><p>The beating heart of an agent: <b>THINK</b> (what next?) → <b>ACT</b> (call a tool) → <b>OBSERVE</b> (read the result) → repeat until the goal is met.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="tools"><span class="tag">Core</span><h3>Tools / function calling</h3><p>Functions the model is allowed to call to act on the world — search the web, do math, query a database. The model requests a tool; your code runs it and returns the result. This is what turns an LLM into an agent.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="memory"><span class="tag">Core</span><h3>Memory</h3><p>Short-term (the current conversation, re-sent each turn) and long-term (facts saved outside the model and pulled back when relevant). LLMs are forgetful by default, so memory is bolted on.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="guardrails"><span class="tag">Core</span><h3>Guardrails</h3><p>Rules and limits that keep an agent safe and on-task — input/output checks, blocking risky actions without approval, and caps on how many loops it can run. A human-in-the-loop checkpoint is the most important one.</p><a class="top" href="#map">↑ back to map</a></div>
+
+    <div class="def" id="rag"><span class="tag">Capable</span><h3>RAG (Retrieval-Augmented Generation)</h3><p>Letting an agent answer from <i>your</i> documents: retrieve the most relevant chunks (via embeddings), add them to the prompt, then the model writes its answer from them. Fixes hallucination and stale knowledge.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="planning"><span class="tag">Capable</span><h3>Planning</h3><p>Breaking a big goal into smaller steps before acting (task decomposition). Often a to-do list the agent maintains and updates as it works.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="react"><span class="tag">Intelligent</span><h3>ReAct (Reason + Act)</h3><p>The agent writes out its reasoning before each action, then acts, then reasons about the result. Thinking out loud improves decisions and makes behavior debuggable.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="reflection"><span class="tag">Intelligent</span><h3>Reflection / self-correction</h3><p>After producing a result, the agent reviews its own work against the goal, finds flaws, and tries again. The "draft, then edit" pass.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="evals"><span class="tag">Intelligent</span><h3>Evals (evaluation)</h3><p>A test set of tasks with known good answers, used to measure whether the agent actually performs well — like unit tests for behavior. Without them you're flying blind.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="context-engineering"><span class="tag">Intelligent</span><h3>Context engineering</h3><p>Curating exactly what goes into the context window at each step — sharp instructions, only relevant documents, summarized history. Widely considered the core skill of building good agents.</p><a class="top" href="#map">↑ back to map</a></div>
+
+    <div class="def" id="framework"><span class="tag">Scaling</span><h3>Framework</h3><p>Pre-built structure that handles the repetitive plumbing (the tool loop, memory, model connections) so you write only what's unique to your project. Optional — you can start with none.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="langchain"><span class="tag">Scaling</span><h3>LangChain</h3><p>The most popular agent framework — a big toolbox of pre-made components and integrations. Great for prototyping; can feel heavy because it does so much.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="langgraph"><span class="tag">Scaling</span><h3>LangGraph</h3><p>Build agents as controllable flowcharts (graphs): you define the allowed paths, the agent decides within them. Preferred for reliable, production agents.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="claude-agent-sdk"><span class="tag">Scaling</span><h3>Claude Agent SDK</h3><p>Anthropic's official toolkit for building agents on Claude — packages the loop, tools, memory, sub-agents, and permissions. Battle-tested from Anthropic's own coding agent.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="mcp"><span class="tag">Scaling</span><h3>MCP (Model Context Protocol)</h3><p>An open standard for plugging tools and data sources into an AI in a uniform way — "USB-C for AI tools." One standard plug, many devices.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="multi-agent"><span class="tag">Scaling</span><h3>Multi-agent system</h3><p>Several specialist agents plus a coordinator (orchestrator) that delegates and combines results — like a newspaper editor assigning stories to reporters. Each sub-agent gets its own clean context.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="deep-agent"><span class="tag">Scaling</span><h3>Deep Agent</h3><p>An agent built for long, complex tasks. Four ingredients: explicit planning, a file system for memory, sub-agents with clean contexts, and detailed instructions/skills. Just Parts 4–7 assembled thoughtfully.</p><a class="top" href="#map">↑ back to map</a></div>
+    <div class="def" id="hermes"><span class="tag">Scaling</span><h3>Hermes Agent</h3><p>Nous Research's open-source, self-hosted Deep Agent: persistent memory, self-written skills, built-in tools, runs on chat platforms. A real-world example of the Deep Agent pattern. (Note: "Hermes" is also a separate family of LLMs — Hermes Agent is the agent, not the model.)</p><a class="top" href="#map">↑ back to map</a></div>
+  </div>
+
+  <footer>Companion to <i>Building AI Agents — A Complete Guide</i> · click a concept above to jump to its definition</footer>
 </div>
 </body>
 </html>
