@@ -1,22 +1,37 @@
 # Learning AI Agents
 
-A beginner-friendly path to understanding and building AI agents — written in
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)
+![Built with Claude](https://img.shields.io/badge/Built%20with-Claude-d97757.svg)
+![Level: Beginner friendly](https://img.shields.io/badge/Level-Beginner%20friendly-7ee0c2.svg)
+
+A beginner-friendly path to understanding **and** building AI agents — written in
 plain language, with diagrams and runnable code. No prior AI experience needed.
 
 It has two parts: a **guide** that explains every concept from the ground up, and
 a **starter project** that lets you build a real agent by hand and watch it work.
 
+<p align="center">
+  <img src="docs/concept-map.png" alt="How AI agent concepts connect — a layered map from the developer toolkit up to Deep Agents" width="720">
+</p>
+
+## What you'll learn
+
+- **The foundations** — what a code editor, terminal, git, GitHub, and the GitHub CLI (`gh`) actually do, and how a tech stack fits together.
+- **How the "brain" works** — LLMs, tokens, the context window, neural networks, and embeddings, explained without jargon.
+- **What makes something an agent** — tools/function calling, memory, RAG, and the think → act → observe loop.
+- **How to make an agent reliable** — planning, reasoning patterns (ReAct, reflection), guardrails, evaluation, and context engineering.
+- **The ecosystem** — LangChain, LangGraph, the Claude Agent SDK, MCP, multi-agent systems, and Deep Agents (with Hermes Agent as a real-world example).
+- **By doing** — you build a working agent yourself, in three gradual levels.
+
 ## Contents
 
 ### 📘 `docs/` — learn the concepts
-- **`Building-AI-Agents-Complete-Guide.md`** — a complete, jargon-free guide in 8
-  parts: the developer toolkit → tech stacks → how LLMs work (tokens, neural
-  networks, embeddings) → turning a chatbot into an agent (tools, memory, RAG, the
-  agent loop) → making agents intelligent (planning, reasoning, guardrails) →
-  frameworks (LangChain, LangGraph, Claude Agent SDK, MCP) → multi-agent systems &
-  Deep Agents → a first project. Includes a glossary.
-- **`AI-Agents-Concept-Map.html`** — a one-page visual map showing how all the
-  concepts connect. Open it in any browser.
+- **`Building-AI-Agents-Complete-Guide.md`** — the complete, jargon-free guide in 8
+  parts, from the developer toolkit all the way to Deep Agents. Includes diagrams
+  and a glossary.
+- **`AI-Agents-Concept-Map.html`** — the one-page visual map (above) as an
+  interactive page. Open it in any browser.
 
 ### 🛠️ `research-agent-starter/` — build a real agent
 A tiny agent built **by hand** (no framework) so you can see the
