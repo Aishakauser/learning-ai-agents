@@ -98,6 +98,16 @@ Why it matters for agents specifically:
 - **Cloning** a repo (`git clone <url>`) downloads someone's project to your machine so you can run it. This is how you'll start most experiments.
 - A **pull request (PR)** is a proposal to merge your changes into someone else's project — the heart of collaboration. You won't need this on day one, but you'll see the term everywhere.
 
+**The GitHub CLI (`gh`).** `gh` is GitHub's official command-line tool — it lets you do GitHub things (create repositories, push code, open pull requests, manage issues) by typing commands instead of clicking around the website. Its biggest convenience is painless sign-in: `gh auth login` opens your browser, you click "authorize," and you're done — no manually creating access tokens. Once it's set up, putting a brand-new project online is three commands:
+
+```bash
+git init                                              # start tracking this folder
+git add . && git commit -m "Initial commit"           # save a first checkpoint
+gh repo create my-project --public --source=. --push   # create the repo and upload it
+```
+
+> **Analogy:** if GitHub.com is the photo-album website you click through, `gh` is a remote control that does the same things from your keyboard — faster once you know the buttons. (Install it with `brew install gh` on a Mac.)
+
 ## 1.5 Environments and packages — why "it works on my machine" happens
 
 **The problem:** Your agent project depends on dozens of pieces of code written by other people — called **packages** or **libraries** (reusable bundles of code you didn't have to write). Project A might need version 1 of a library; Project B might need version 2. If you install everything globally, they collide.
@@ -677,6 +687,14 @@ flowchart TB
 
 > **Connecting it back:** Notice deep agents are just Parts 4–7 combined thoughtfully — the loop, plus planning, plus memory-as-files, plus sub-agents, plus good context engineering. There's no new magic, just disciplined assembly of fundamentals.
 
+### A real-world example: Hermes Agent
+
+A useful way to see these ideas in the wild is **Hermes Agent**, an open-source, self-hosted agent from Nous Research. Its pitch is an agent that *grows with you*: it runs persistently, remembers your projects and preferences across sessions, and — notably — writes its own reusable **skill** documents when it solves a hard problem, so it doesn't have to relearn later. It ships with tools (web search, file handling, terminal execution), can run scheduled work, and reaches you through channels you already use (Telegram, Discord, Slack, WhatsApp, CLI). It's free and self-hostable, running on anything from a small cloud server to a GPU box.
+
+Map it onto this guide and it's almost exactly a Deep Agent: persistent file-based memory (ingredient 2), self-written skills (ingredient 4), built-in tools (Part 4.2), and the autonomous loop (Part 4.5). It's worth studying as a concrete, running implementation of the patterns described here.
+
+> **Name clash to avoid confusion:** Nous Research also makes a family of open **LLMs** called Hermes (Hermes 2, 3, 4). Those are *models* (the engine, Part 3). **Hermes *Agent*** is the *agent* (the scaffolding, Parts 4–7) — you could even run it on top of a Hermes model, or another model entirely. Same brand, two different layers of the stack.
+
 ---
 
 # Part 8 — Putting It Together
@@ -757,6 +775,7 @@ A sane path from here, given your background:
 | **Terminal / CLI** | Controlling the computer by typing commands |
 | **Git** | Tool that saves snapshots (commits) of your code |
 | **GitHub** | Website that stores git projects in the cloud |
+| **GitHub CLI (`gh`)** | GitHub's command-line tool; `gh auth login` signs in via browser, then one command creates and pushes a repo |
 | **Repository (repo)** | A project folder git is tracking |
 | **Package / library** | Pre-written code you install and reuse |
 | **Virtual environment** | An isolated bubble of packages for one project |
@@ -792,6 +811,7 @@ A sane path from here, given your background:
 | **Multi-agent system** | Several specialist agents + a coordinator |
 | **Orchestrator** | The boss agent that delegates and combines results |
 | **Deep Agent** | A long-horizon agent: plans, uses files, sub-agents, skills |
+| **Hermes Agent** | Nous Research's open-source self-hosted Deep Agent (persistent memory, self-written skills); note Hermes is also a separate family of LLMs |
 | **Prompt injection** | Hidden malicious text trying to hijack an agent |
 | **Deployment** | Hosting your agent so it runs online / 24-7 |
 
