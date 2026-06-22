@@ -11,6 +11,11 @@ plain language, with diagrams and runnable code. No prior AI experience needed.
 It has two parts: a **guide** that explains every concept from the ground up, and
 a **starter project** that lets you build a real agent by hand and watch it work.
 
+### 🌐 Live site
+
+- **Read the designed guide →** https://aishakauser.github.io/learning-ai-agents/docs/Building-AI-Agents-Guide-Designed.html
+- **Explore the interactive concept map →** https://aishakauser.github.io/learning-ai-agents/docs/AI-Agents-Concept-Map.html
+
 <p align="center">
   <img src="docs/concept-map.png" alt="How AI agent concepts connect — a layered map from the developer toolkit up to Deep Agents" width="720">
 </p>
