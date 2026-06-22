@@ -30,6 +30,8 @@ a **starter project** that lets you build a real agent by hand and watch it work
 - **`Building-AI-Agents-Complete-Guide.md`** — the complete, jargon-free guide in 8
   parts, from the developer toolkit all the way to Deep Agents. Includes diagrams
   and a glossary.
+- **`Building-AI-Agents-Guide-Designed.html`** — the full guide as a polished,
+  designed web page (editorial layout, redrawn diagrams). Open in any browser; prints to a clean PDF.
 - **`AI-Agents-Concept-Map.html`** — the one-page visual map (above) as an
   interactive page. Open it in any browser.
 
